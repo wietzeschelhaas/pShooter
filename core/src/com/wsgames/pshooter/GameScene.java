@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FillViewport;
@@ -65,13 +66,15 @@ public class GameScene extends BaseScene {
 
 
       // move the camera to player pos
-      game.camera.position.x = player.body.getPosition().x*game.PPM;
-      game.camera.position.y = player.body.getPosition().y*game.PPM;
+      game.camera.position.x = MathUtils.round(player.body.getPosition().x*game.PPM);
+      game.camera.position.y = MathUtils.round(player.body.getPosition().y*game.PPM);
       game.camera.update();
+      System.out.println(game.camera.position);
 
       box2DCam.position.x = player.body.getPosition().x;
       box2DCam.position.y = player.body.getPosition().y;
       box2DCam.update();
+
 
       // TILE RENDER
       batch.setProjectionMatrix(game.camera.combined);
@@ -85,6 +88,8 @@ public class GameScene extends BaseScene {
       batch.begin();
       player.getSprite().draw(batch);
       batch.end();
+
+
 
       hud.draw(delta);
 

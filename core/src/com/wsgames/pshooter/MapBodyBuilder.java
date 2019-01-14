@@ -42,7 +42,6 @@ public class MapBodyBuilder {
 
     private static void getRectangle(RectangleMapObject rectangleObject) {
         Rectangle rectangle = rectangleObject.getRectangle();
-        System.out.println(rectangle);
         crwo.CreateBox(world, BodyDef.BodyType.StaticBody,rectangle.x/PPM +((rectangle.width/PPM)/2),rectangle.y/PPM + ((rectangle.height/PPM)/2),
                 (rectangle.width/PPM)/2,(rectangle.height/PPM)/2);
 
